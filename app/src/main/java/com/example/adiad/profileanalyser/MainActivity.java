@@ -1,5 +1,6 @@
 package com.example.adiad.profileanalyser;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -8,12 +9,16 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    CallbackManager callbackManager;
    // private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -22,12 +27,18 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.social,
             R.drawable.internal
     };
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
-
-
 //        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 //        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
 //            @Override
@@ -58,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HealthFragment(), "Health");
-        adapter.addFragment(new SocialMedia(), "Social Media");
+        adapter.addFragment(new SocialMedia(callbackManager), "Social Media");
         adapter.addFragment(new InternalMemory(), "Internal Memory");
         viewPager.setAdapter(adapter);
     }

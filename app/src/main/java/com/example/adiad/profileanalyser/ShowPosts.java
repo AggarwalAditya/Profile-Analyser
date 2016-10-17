@@ -43,39 +43,39 @@ public class ShowPosts extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client2;
 
     void show_posts(JSONArray objects) {
         for (int i = 0; i < objects.length(); ++i) {
-        JSONObject object = null;
-        try {
-            object = objects.getJSONObject(i);
-            if(object.has("message"))
-            {
-                messages.add( object.getString("message"));
-                if(object.has("story"))
-                {
-                    stories.add( object.getString("story"));
+            JSONObject object = null;
+            try {
+                object = objects.getJSONObject(i);
+                if (object.has("message")) {
+                    messages.add(object.getString("message"));
+                    if (object.has("story")) {
+                        stories.add(object.getString("story"));
+                    } else {
+                        stories.add("null");
+                    }
+                } else {
+                    stories.add(object.getString("story"));
+                    messages.add("null");
                 }
-                else
-                {
-                    stories.add("null");
-                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-            else {
-                stories.add( object.getString("story"));
-                messages.add("null");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
             disp.setText(messages.toString());
         }
     }
 
     String getnext(JSONObject obj) {
-        String next_url ="";
+        String next_url = "";
         try {
-            if(obj.getJSONObject("paging").has("next")){
+            if (obj.getJSONObject("paging").has("next")) {
                 next_url = obj.getJSONObject("paging").getString("next");
             }
         } catch (JSONException e) {
@@ -97,9 +97,8 @@ public class ShowPosts extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-               String  next=getnext(response);
-               if (!next.isEmpty())
-                {
+                String next = getnext(response);
+                if (!next.isEmpty()) {
                     makeRequest(next);
 
                 }
@@ -123,9 +122,9 @@ public class ShowPosts extends AppCompatActivity {
         setContentView(R.layout.activity_show_posts);
         disp = (TextView) findViewById(R.id.disp);
         Bundle extras = getIntent().getExtras();
-        story_button=(Button)findViewById(R.id.stroies);
-        messages_button = (Button)findViewById(R.id.messages);
-         queue = Volley.newRequestQueue(this);
+        story_button = (Button) findViewById(R.id.stroies);
+        messages_button = (Button) findViewById(R.id.messages);
+        queue = Volley.newRequestQueue(this);
         currentAccessToken = (AccessToken) extras.get("currentAccessToken");
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
@@ -136,15 +135,15 @@ public class ShowPosts extends AppCompatActivity {
                     public void onCompleted(GraphResponse response) {
                         try {
 
-                             show_posts(response.getJSONObject().getJSONArray("data"));
+                            show_posts(response.getJSONObject().getJSONArray("data"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                         String next = getnext(response.getJSONObject());
-                       // disp.setText(next);
-                        if(!next.isEmpty()){
+                        // disp.setText(next);
+                        if (!next.isEmpty()) {
                             makeRequest(next);
-                      }
+                        }
                         story_button.setEnabled(true);
                         messages_button.setEnabled(true);
 
@@ -166,9 +165,52 @@ public class ShowPosts extends AppCompatActivity {
         });
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        // client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client2.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "ShowPosts Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.adiad.profileanalyser/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client2, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "ShowPosts Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://com.example.adiad.profileanalyser/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client2, viewAction);
+        client2.disconnect();
+    }
+/*
     @Override
     public void onStart() {
         super.onStart();
@@ -184,7 +226,7 @@ public class ShowPosts extends AppCompatActivity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.pramit.fblogin/http/host/path")
+                Uri.parse("android-app:// com.example.adiad.profileanalyser/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -203,9 +245,9 @@ public class ShowPosts extends AppCompatActivity {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.pramit.fblogin/http/host/path")
+                Uri.parse("android-app://com.example.adiad.profileanalyser/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
-    }
+    }*/
 }
