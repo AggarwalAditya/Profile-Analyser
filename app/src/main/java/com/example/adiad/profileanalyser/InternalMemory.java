@@ -27,8 +27,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
 
-public class InternalMemory extends Fragment {
+
+public class InternalMemory extends Fragment   implements ConnectivityReceiver.ConnectivityReceiverListener  {
 
     private PackageManager packageManager=null;
     private List<ApplicationInfo> applist=null;
@@ -42,7 +44,7 @@ public class InternalMemory extends Fragment {
     private static float sports=0;
     private static float others=0;
     private static float maps_navigation=0;
-
+    private GifImageView gif;
     public InternalMemory()
     {}
 
@@ -55,23 +57,30 @@ public class InternalMemory extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView=inflater.inflate(R.layout.fragment_internal_memory, container, false);
+        checkConnection(rootView);
         mPieChart=(PieChart)rootView.findViewById(R.id.piechart);
         cat_piechart=(PieChart)rootView.findViewById(R.id.piechart2);
+        gif=(pl.droidsonroids.gif.GifImageView)rootView.findViewById(R.id.gif);
+
 
         BottomBar bottomBar = (BottomBar) rootView.findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.data_usage) {
+
                     mPieChart.setVisibility(View.VISIBLE);
                     cat_piechart.setVisibility(View.GONE);
+                    gif.setVisibility(View.GONE);
                 }
                 if(tabId == R.id.category)
                 {
+                    checkConnection(rootView);
                     mPieChart.setVisibility(View.GONE);
                     cat_piechart.setVisibility(View.VISIBLE);
                     cat_piechart.clearChart();
                     making_category_piechart(cat_piechart, social, maps_navigation, sports);
+                    checkConnection(rootView);
                 }
             }
         });
@@ -255,4 +264,51 @@ public class InternalMemory extends Fragment {
     }
 
 
+    private void checkConnection(View rootView) {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected,rootView);
+    }
+
+    // Showing the status in Snackbar
+    private void showSnack(boolean isConnected,View rootView) {
+
+        String message;
+        int color;
+        mPieChart=(PieChart)rootView.findViewById(R.id.piechart);
+        cat_piechart=(PieChart)rootView.findViewById(R.id.piechart2);
+        gif=(pl.droidsonroids.gif.GifImageView)rootView.findViewById(R.id.gif);
+        if (isConnected) {
+            message = "Good! Connected to Internet";
+            gif.setVisibility(View.GONE);
+            cat_piechart.setVisibility(View.VISIBLE);
+            color = Color.WHITE;
+        } else {
+            message = "Sorry! Not connected to internet";
+
+
+
+            cat_piechart.setVisibility(View.GONE);
+            mPieChart.setVisibility(View.GONE);
+            gif.setVisibility(View.VISIBLE);
+            color = Color.RED;
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+    }
+
+    /**
+     * Callback will be triggered when there is change in
+     * network connection
+     */
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected,getView());
+    }
 }

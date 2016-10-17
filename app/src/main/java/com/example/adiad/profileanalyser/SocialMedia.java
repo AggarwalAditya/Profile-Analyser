@@ -1,6 +1,7 @@
 package com.example.adiad.profileanalyser;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -32,9 +33,12 @@ import com.roughike.bottombar.OnTabSelectListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
 
-public class SocialMedia extends Fragment {
 
+public class SocialMedia extends Fragment  implements ConnectivityReceiver.ConnectivityReceiverListener{
+
+    private GifImageView gif;
     public GoogleApiClient client;
     CallbackManager callbackManager;
     TextView status;
@@ -93,6 +97,7 @@ public class SocialMedia extends Fragment {
             profilePictureView.setVisibility(View.GONE);
            // status.setVisibility(View.GONE);
         }
+
     }
 
     private static TextView tvfb;
@@ -124,8 +129,9 @@ public class SocialMedia extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_social_media, container, false);
 //        tvfb=(TextView)rootView.findViewById(R.id.tvfb);
 //        tvtw=(TextView)rootView.findViewById(R.id.tvtw);
-//
+//c
         loginButton = (LoginButton) rootView.findViewById(R.id.login_button);
+        checkConnection(rootView);
         List<String> permissions = new ArrayList<String>();
         permissions.add("user_likes");
         permissions.add("user_posts");
@@ -142,6 +148,7 @@ public class SocialMedia extends Fragment {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.facebook) {
+                    checkConnection(rootView);
                     loginButton.setVisibility(View.VISIBLE);
                     likes.setVisibility(View.VISIBLE);
                     posts.setVisibility(View.VISIBLE);
@@ -151,6 +158,7 @@ public class SocialMedia extends Fragment {
                 }
                 if(tabId == R.id.twitter)
                 {
+                    checkConnection(rootView);
                     loginButton.setVisibility(View.GONE);
                     likes.setVisibility(View.GONE);
                     posts.setVisibility(View.GONE);
@@ -262,5 +270,62 @@ public class SocialMedia extends Fragment {
         );
         AppIndex.AppIndexApi.end(client2, viewAction);
         client2.disconnect();
+    }
+
+    private void checkConnection(View rootView) {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected, rootView);
+    }
+
+    // Showing the status in Snackbar
+    private void showSnack(boolean isConnected,View rootView) {
+
+        String message;
+        int color;
+        likes = (Button) rootView.findViewById(R.id.likes);
+        posts = (Button) rootView.findViewById(R.id.posts);
+        loginButton = (LoginButton) rootView.findViewById(R.id.login_button);
+        profilePictureView = (ProfilePictureView) rootView.findViewById(R.id.user_pic);
+        gif=(GifImageView) rootView.findViewById(R.id.gif);
+        if (isConnected) {
+            message = "Good! Connected to Internet";
+           gif.setVisibility(View.GONE);
+            likes.setVisibility(View.VISIBLE);
+            posts.setVisibility(View.VISIBLE);
+            loginButton.setVisibility(View.VISIBLE);
+            profilePictureView.setVisibility(View.VISIBLE);
+            color = Color.WHITE;
+
+
+        } else {
+            message = "Sorry! Not connected to internet";
+
+            color = Color.RED;
+
+
+            gif.setVisibility(View.VISIBLE);
+            likes.setVisibility(View.GONE);
+            posts.setVisibility(View.GONE);
+            loginButton.setVisibility(View.GONE);
+            profilePictureView.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+    }
+
+    /**
+     * Callback will be triggered when there is change in
+     * network connection
+     */
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected, getView());
     }
 }
