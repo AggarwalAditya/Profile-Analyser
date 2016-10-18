@@ -43,6 +43,7 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
     private static float social=0;
     private static float sports=0;
     private static float others=0;
+    private static float news_mag=0;
     private static float maps_navigation=0;
     private GifImageView gif;
     public InternalMemory()
@@ -79,7 +80,7 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
                     mPieChart.setVisibility(View.GONE);
                     cat_piechart.setVisibility(View.VISIBLE);
                     cat_piechart.clearChart();
-                    making_category_piechart(cat_piechart, social, maps_navigation, sports);
+                    making_category_piechart(cat_piechart, social, maps_navigation, sports,news_mag);
                     checkConnection(rootView);
                 }
             }
@@ -89,7 +90,7 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
         listView=(ListView)rootView.findViewById(R.id.list);
         new LoadApplications().execute();
         new Crawling().execute();
-        making_category_piechart(cat_piechart, social, maps_navigation, sports);
+        making_category_piechart(cat_piechart, social, maps_navigation, sports,news_mag);
 
         mPieChart.startAnimation();
         cat_piechart.startAnimation();
@@ -126,7 +127,7 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
         return applist;
     }
 
-    private void making_category_piechart(PieChart cat_piechart,float social,float maps_navigation,float sports)
+    private void making_category_piechart(PieChart cat_piechart,float social,float maps_navigation,float sports,float news_mag)
     {
         int col =Color.parseColor("#FE6DA8");
         col=col+4000;
@@ -135,8 +136,10 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
         cat_piechart.addPieSlice(new PieModel("Sports" ,sports, col));
         col=col+7000;
         cat_piechart.addPieSlice(new PieModel("Maps & navigation" ,maps_navigation, col));
-//        col=col+1000;
-//        cat_piechart.addPieSlice(new PieModel("Others" ,others, col));
+        col=col+1000;
+        cat_piechart.addPieSlice(new PieModel("News " ,news_mag, col));
+        col=col+1000;
+       cat_piechart.addPieSlice(new PieModel("Others" ,others, col));
     }
 
     private class Crawling extends AsyncTask<Void, Void, Void>
@@ -192,6 +195,8 @@ public class InternalMemory extends Fragment   implements ConnectivityReceiver.C
                         case "Maps & Navigation":
                             ++maps_navigation;
                             break;
+                        case "News & Magazines":
+                            ++news_mag;
                         default:
                             ++others;
 
