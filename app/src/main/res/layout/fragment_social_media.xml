@@ -15,6 +15,14 @@
     app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/gif"
+        android:src="@drawable/internet"
+        android:layout_weight="0.33"
+        android:visibility="visible"
+        />
 
     <com.facebook.login.widget.ProfilePictureView
         android:layout_width="fill_parent"

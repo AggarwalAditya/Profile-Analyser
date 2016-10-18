@@ -13,6 +13,15 @@
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottom_bar2" />
 
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/gif"
+        android:src="@drawable/internet"
+        android:layout_weight="0.33"
+        android:visibility="visible"
+         />
+
     <org.eazegraph.lib.charts.PieChart
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/piechart"
