@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.adiad.profileanalyser.Fragment_4"
+    android:orientation="vertical">
+
+
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#009939"
+    android:layout_marginTop="200dp"
+    android:textColor="#ffffff"
+    android:layout_gravity="center"
+    android:id="@+id/submit_analysis"
+    android:text="SUBMIT ANALYSIS"
+    android:onClick="submit_analysis"/>
+
+</LinearLayout>

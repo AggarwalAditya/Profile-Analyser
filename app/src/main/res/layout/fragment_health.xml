@@ -8,8 +8,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.golu.health.MainActivity">
-
-
     <TextView
         android:id="@+id/smoking"
         android:layout_width="wrap_content"
@@ -27,7 +25,6 @@
         android:layout_alignBottom="@+id/smoking"
         android:layout_toEndOf="@id/smoking">
     </Spinner>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,7 +32,6 @@
         android:id="@+id/weight"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="50dp"
         android:layout_height="wrap_content"
@@ -173,10 +169,10 @@
     <Button
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:text="Health Index"
+        android:text="Calculate"
         android:id="@+id/hicalculate"
         android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView8" />
+        android:layout_toEndOf="@+id/textView2" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -189,23 +185,51 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/cholesterol"
+        android:id="@+id/totalch"
         android:layout_above="@+id/hicalculate"
         android:layout_toEndOf="@+id/textView7" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mg/dL"
+        android:text="Total "
         android:id="@+id/textView8"
         android:layout_above="@+id/hicalculate"
-        android:layout_toEndOf="@+id/textView2" />
-    <Button
-        android:layout_width="130dp"
+        android:layout_toEndOf="@+id/highbp" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Heart Age"
-        android:id="@+id/heartage"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/hicalculate" />
-
-
+        android:text="Age :"
+        android:id="@+id/textView9"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView8" />
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/hdlch"
+        android:layout_above="@+id/hicalculate"
+        android:layout_alignStart="@+id/lowbp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="years"
+        android:id="@+id/textView10"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/age" />
+    <EditText
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/age"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView9" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HDL mg/dL"
+        android:id="@+id/textView11"
+        android:layout_above="@+id/hicalculate"
+        android:layout_toEndOf="@+id/age" />
 </RelativeLayout>

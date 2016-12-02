@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
@@ -19,8 +22,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     CallbackManager callbackManager;
+
+    private Button post_event_details;
    // private Toolbar toolbar;
     private TabLayout tabLayout;
+    private PrefManager prefManager;
     private ViewPager viewPager;
     private int[] tabIcons = {
             R.drawable.health,
@@ -39,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         setContentView(R.layout.activity_main);
+        prefManager=new PrefManager(this);
 //        BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 //        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
 //            @Override
@@ -50,7 +57,18 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+        //Toast.makeText(getBaseContext(),prefManager.get_event_name() , Toast.LENGTH_LONG).show();
+        post_event_details=(Button)findViewById(R.id.post_event_details);
 
+        if(getIntent().getExtras().getString("eventORnot").contentEquals("1"))
+        {
+            Toast.makeText(getBaseContext(),prefManager.get_event_name() , Toast.LENGTH_LONG).show();
+            post_event_details.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            post_event_details.setVisibility(View.GONE);
+        }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -60,17 +78,26 @@ public class MainActivity extends AppCompatActivity {
         setupTabIcons();
         viewPager.setOffscreenPageLimit(3);
 
+
     }
     private void setupTabIcons() {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        if(getIntent().getExtras().getString("eventORnot").contentEquals("1"))
+        {
+            tabLayout.getTabAt(3).setIcon(tabIcons[2]);
+        }
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new HealthFragment(), "Health");
         adapter.addFragment(new SocialMedia(callbackManager), "Social Media");
         adapter.addFragment(new InternalMemory(), "Internal Memory");
+        if(getIntent().getExtras().getString("eventORnot").contentEquals("1"))
+        {
+            adapter.addFragment(new Fragment_4(), "Post");
+        }
         viewPager.setAdapter(adapter);
     }
 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3b5998"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:mtf_image="@drawable/invite"
+        android:layout_marginLeft="20dp"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Event Id"
+            android:id="@+id/event_name"
+            android:textColor="#333"
+            android:textColorHint="#666"
+            android:textSize="15sp" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:mtf_image="@drawable/invite"
+        android:layout_marginLeft="20dp"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Name"
+            android:id="@+id/person_name"
+            android:textColor="#333"
+            android:textColorHint="#666"
+            android:textSize="15sp" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+    <com.github.florent37.materialtextfield.MaterialTextField
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:mtf_image="@drawable/invite"
+        android:layout_marginLeft="20dp"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:id="@+id/phone_number"
+            android:textColor="#333"
+            android:textColorHint="#666"
+            android:textSize="15sp" />
+
+    </com.github.florent37.materialtextfield.MaterialTextField>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#009939"
+        android:textColor="#ffffff"
+        android:layout_marginTop="270dp"
+        android:text="Enter event"
+        android:id="@+id/event_btn"
+        android:onClick="enter_event_clicked"/>
+
+</LinearLayout>

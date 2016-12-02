@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.golu.health.Main2Activity"
+    android:weightSum="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ll1">
+        <TextView
+            android:layout_width="255dp"
+            android:layout_height="44dp"
+            android:text="Your Health Index is -"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/textView12"
+            android:textSize="27dp"
+            android:textIsSelectable="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.5/6"
+            android:textSize="26dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/textView13"
+            android:layout_weight="0.04"
+            android:layout_gravity="right" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ll2">
+        <TextView
+            android:layout_width="255dp"
+            android:layout_height="44dp"
+            android:text="Your Heart Age is -"
+            android:layout_below="@+id/textView12"
+            android:layout_marginLeft="0dp"
+            android:id="@+id/textView14"
+            android:textSize="27dp"
+            android:textIsSelectable="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textSize="28dp"
+            android:id="@+id/textView15"
+            android:layout_weight="0.04"
+            android:layout_gravity="right"
+            android:layout_below="@+id/textView12"
+            android:layout_toStartOf="@+id/textView13" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll3">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMI ANALYSIS:-"
+                    android:id="@+id/textView16"
+                    android:textSize="30dp"
+                    android:layout_below="@+id/textView15"
+                    android:layout_alignParentStart="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="You have Normal BMI ratio and it will be
+better for you if you maintain this ratio as it rigth now."
+                    android:id="@+id/textView17"
+                    android:layout_below="@+id/textView16"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignEnd="@+id/textView13"
+                    android:textSize="25dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SMOKING ANALYSIS:-"
+                    android:id="@+id/textView18"
+                    android:layout_below="@+id/textView17"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are a Regular Smoker
+and Smoking effects your health index as well as your heart
+age."
+                    android:id="@+id/textView19"
+                    android:layout_below="@+id/textView18"
+                    android:layout_alignParentStart="true"
+                    android:textSize="25dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll5">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ACTIVENESS ANALYSIS:-"
+                    android:id="@+id/textView20"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are not active at
+all.You must walk or run for about 10 or more minutes per day."
+                    android:id="@+id/textView21"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll6">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DIET ANALYSIS:-"
+                    android:id="@+id/textView22"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are not
+active at all.You must walk or run for about 10 or more minutes
+per day."
+                    android:id="@+id/textView23"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll7">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DIABETIC ANALYSIS:-"
+                    android:id="@+id/textView24"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are not
+active at all.You must walk or run for about 10 or more minutes
+per day."
+                    android:id="@+id/textView25"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll8">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BLOOD PRESSURE ANALYSIS:-"
+                    android:id="@+id/textView26"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are not
+active at all.You must walk or run for about 10 or more minutes
+per day."
+                    android:id="@+id/textView27"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/ll9">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CHOLESTROL ANALYSIS:-"
+                    android:id="@+id/textView28"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It is found that you are not
+active at all.You must walk or run for about 10 or more minutes
+per day."
+                    android:id="@+id/textView29"
+                    android:layout_below="@+id/textView19"
+                    android:layout_alignParentStart="true"
+                    android:textSize="30dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -121,7 +121,7 @@ private PrefManager prefManager;
 
         private void launchHomeScreen() {
             prefManager.setFirstTimeLaunch(false);
-            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+            startActivity(new Intent(WelcomeActivity.this, HomePage.class));
             finish();
         }
 

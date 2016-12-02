@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+
+
+                <ImageView
+                    android:id="@+id/backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_gravity="center"
+                        android:id="@+id/love_music"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profile Analyzer"
+                        android:textColor="@android:color/white"
+                        android:textSize="20dp" />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/self"
+            android:onClick="self_clicked"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/my_orders_icon"
+                android:src="@drawable/self"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Local Analyses"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="80dp"
+
+                android:textSize="40dp"
+                android:id="@+id/my_orders_title"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:id="@+id/event"
+            android:onClick="event_clicked"
+            android:layout_marginTop="20dp"
+            android:clickable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/share_icon"
+                android:src="@drawable/event"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Enter an event"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="80dp"
+
+                android:textSize="40dp"
+                android:id="@+id/share_title"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
