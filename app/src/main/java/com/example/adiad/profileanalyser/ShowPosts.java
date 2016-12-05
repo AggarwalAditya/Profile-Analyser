@@ -1,5 +1,6 @@
 package com.example.adiad.profileanalyser;
 
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +44,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowPosts extends AppCompatActivity {
+    public PieChart pieChart;
+    PrefManager prefManager;
     AccessToken currentAccessToken;
     int index = 1;
     TextView disp;
@@ -137,6 +142,8 @@ public class ShowPosts extends AppCompatActivity {
         story_button = (Button) findViewById(R.id.stroies);
         messages_button = (Button) findViewById(R.id.messages);
         queue = Volley.newRequestQueue(this);
+        prefManager=new PrefManager(this);
+        pieChart=(PieChart)findViewById(R.id.piechart);
         currentAccessToken = (AccessToken) extras.get("currentAccessToken");
         new GraphRequest(
                 AccessToken.getCurrentAccessToken(),
@@ -274,6 +281,37 @@ public class ShowPosts extends AppCompatActivity {
     //ASYNC TASK TO SEND MY POSTS
 
 
+    public  void make_UI_changes(String var)
+    {
+        disp.setVisibility(View.GONE);
+        pieChart.setVisibility(View.VISIBLE);
+        int index=0;
+        int col = Color.parseColor("#FE6DA8");
+        col=col+4000;
+        for(int i=0;i<var.length();i++)
+        {
+            if(var.charAt(i)==' ')
+            {
+                index=i;
+                break;
+            }
+        }
+
+        int positive=Integer.parseInt(var.substring(0,index));
+        int negative=Integer.parseInt(var.substring(index+1,var.length()));
+
+        float pos_per=(positive/(float)negative)*100;
+        float neg_per=100-pos_per;
+
+        String pos_string=Float.toString(pos_per);
+        String neg_str=Float.toString(neg_per);
+
+        String social_media_posts=pos_string+" "+neg_str;
+        prefManager.set_social_media_posts(social_media_posts);
+        pieChart.addPieSlice(new PieModel("Positive" ,pos_per,col));
+        pieChart.addPieSlice(new PieModel("Negative" ,neg_per,col+8000));
+
+    }
 
     public static String POST(){
         InputStream inputStream = null;
@@ -286,7 +324,7 @@ public class ShowPosts extends AppCompatActivity {
             HttpClient httpclient = new DefaultHttpClient();
 
             // 2. make POST request to the given URL
-            HttpPost httpPost = new HttpPost("http://192.168.43.106:5000/senti");
+            HttpPost httpPost = new HttpPost("http://192.168.43.58:5000/senti");
 
             String json = "";
 
@@ -304,6 +342,10 @@ public class ShowPosts extends AppCompatActivity {
             // json = mapper.writeValueAsString(person);
 
             // 5. set json to StringEntity
+            for(int i=0;i<messages.size();i++)
+            {
+                messages.set(i,messages.get(i)+"$");
+            }
             StringEntity se = new StringEntity(messages.toString());
 
             // 6. set httpPost Entity
@@ -349,6 +391,7 @@ public class ShowPosts extends AppCompatActivity {
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
+            make_UI_changes(var);
             Toast.makeText(getBaseContext(), var, Toast.LENGTH_LONG).show();
         }
     }

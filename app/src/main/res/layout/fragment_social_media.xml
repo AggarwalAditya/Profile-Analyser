@@ -3,16 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#3b5998"
+    android:layout_marginBottom="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context="com.example.adiad.profileanalyser.SocialMedia">
 
-    <com.roughike.bottombar.BottomBar
-    android:id="@+id/bottomBar"
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:layout_alignParentBottom="true"
-    app:bb_tabXmlResource="@xml/bottombar_tabs" />
+    <!--<com.roughike.bottombar.BottomBar-->
+    <!--android:id="@+id/bottomBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--app:bb_tabXmlResource="@xml/bottombar_tabs" />-->
 
 
     <pl.droidsonroids.gif.GifImageView
@@ -28,19 +30,22 @@
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:id="@+id/user_pic"
-
+        android:layout_marginLeft="0dp"
         android:layout_above="@+id/likes" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="75dp">
+        android:orientation="horizontal"
+        android:layout_marginLeft="80dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Likes"
             android:id="@+id/likes"
+            android:background="#3b5998"
+            android:textColor="#ffffff"
             android:layout_marginBottom="47dp"
             android:layout_above="@+id/login_button"
             android:layout_alignParentLeft="true"
@@ -52,12 +57,27 @@
             android:layout_height="wrap_content"
             android:text="Posts"
             android:id="@+id/posts"
+            android:background="#3b5998"
+            android:textColor="#ffffff"
             android:layout_above="@+id/login_button"
             android:layout_alignBottom="@+id/likes"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:enabled="false"
             android:layout_alignTop="@+id/likes" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Photos"
+            android:id="@+id/photos"
+            android:background="#3b5998"
+            android:textColor="#ffffff"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+
+            />
+
     </LinearLayout>
 
 

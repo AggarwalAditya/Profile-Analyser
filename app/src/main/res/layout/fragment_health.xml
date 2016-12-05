@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:background="#ffffff"
+
+
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.golu.health.MainActivity">
     <TextView
@@ -167,9 +167,11 @@
         android:layout_alignBottom="@+id/lowbp"
         android:layout_toEndOf="@+id/lowbp" />
     <Button
-        android:layout_width="130dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="CALCULATE"
+        android:background="#ff8c00"
+        android:textColor="#ffffff"
         android:id="@+id/hicalculate"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/textView2" />

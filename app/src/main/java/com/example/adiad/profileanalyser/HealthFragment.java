@@ -25,6 +25,7 @@ public class HealthFragment extends Fragment {
     Button hicalculate;
     health h=new health();
     heartage ha=new heartage();
+    PrefManager prefManager;
     int a;
     int q=0, w=0, y=0,p=0,m=0,n=0;
     float w1 = 0, y1 = 0, z=0;
@@ -47,7 +48,7 @@ public class HealthFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView=inflater.inflate(R.layout.fragment_health, container, false);
-
+        prefManager=new PrefManager(getContext());
         mass = (EditText) rootView.findViewById(R.id.mass);
         highbp = (EditText) rootView.findViewById(R.id.highbp);
         lowbp = (EditText) rootView.findViewById(R.id.lowbp);
@@ -348,9 +349,13 @@ public class HealthFragment extends Fragment {
                 String ha1=Float.toString(ha.heage);
                 String ch1=Float.toString(ha.ch);
 
+
+
                 Toast.makeText(getContext(), "All empty fields are taken into consideration that you are fit in them. ", Toast.LENGTH_LONG).show();
 
 
+                String health_module=hi1+" "+ha1;
+                prefManager.set_health_module(health_module);
 
                 Intent intent=new Intent(getContext(),Main2Activity.class);
                 intent.putExtra("hi",hi1);

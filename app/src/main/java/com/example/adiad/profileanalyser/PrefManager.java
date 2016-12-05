@@ -21,7 +21,9 @@ public class PrefManager {
     private static final String EVENT_NAME="event_name";
     private static final String PERSON_NAME="person_name";
     private static final String PHONE_NUMBER="phone_number";
-
+    private static final String HEALTH_MODULE="health_module";
+    private static final String SOCIAL_MEDIA_POSTS="social_media_posts";
+    private  static final String SOCIAL_MEDIA_LIKES="social_media_likes";
     public PrefManager(Context context) {
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -57,6 +59,25 @@ public class PrefManager {
         editor.commit();
     }
 
+    public void set_health_module(String health_info)
+    {
+        editor.putString(HEALTH_MODULE,health_info);
+        editor.commit();
+    }
+
+    public void set_social_media_posts(String social_media_posts_info)
+    {
+        editor.putString(SOCIAL_MEDIA_POSTS,social_media_posts_info);
+        editor.commit();
+    }
+
+    public String  get_social_media_posts()
+    {
+        return pref.getString(SOCIAL_MEDIA_POSTS,"null");
+    }
+
+    public String get_health_module(){return pref.getString(HEALTH_MODULE,"null");} //health index + heart age
+
     public String get_person_name()
     {
         return pref.getString(PERSON_NAME,"null");
@@ -65,5 +86,16 @@ public class PrefManager {
     public String get_phone_number()
     {
         return pref.getString(PHONE_NUMBER,"null");
+    }
+
+    public void set_likes_info(String likes_info)
+    {
+        editor.putString(SOCIAL_MEDIA_LIKES,likes_info);
+        editor.commit();
+    }
+
+    public String get_social_media_likes()
+    {
+        return pref.getString(SOCIAL_MEDIA_LIKES,"null");//penterainment + " " + ptech + " " + psports + " " + pmusic + " "+ppeople+ " " + pnews+ " "+ pecomm+" "+peducation + " "+ phealth +" " + pothers
     }
 }

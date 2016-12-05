@@ -4,18 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="com.example.golu.health.Main2Activity"
     android:weightSum="1">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#2e3237"
         android:id="@+id/ll1">
         <TextView
             android:layout_width="255dp"
             android:layout_height="44dp"
             android:text="Your Health Index is -"
             android:layout_marginBottom="10dp"
+            android:textColor="#ffffff"
+
             android:id="@+id/textView12"
             android:textSize="27dp"
             android:textIsSelectable="true" />
@@ -24,6 +28,8 @@
             android:layout_height="wrap_content"
             android:text="4.5/6"
             android:textSize="26dp"
+
+            android:textColor="#ea4c88"
             android:layout_alignParentRight="true"
             android:id="@+id/textView13"
             android:layout_weight="0.04"
@@ -33,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#2e3237"
         android:id="@+id/ll2">
         <TextView
             android:layout_width="255dp"
@@ -42,11 +49,13 @@
             android:layout_marginLeft="0dp"
             android:id="@+id/textView14"
             android:textSize="27dp"
+            android:textColor="#ffffff"
             android:textIsSelectable="true" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="50"
+            android:textColor="#ea4c88"
             android:textSize="28dp"
             android:id="@+id/textView15"
             android:layout_weight="0.04"
@@ -60,16 +69,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="#26ae90">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 android:id="@+id/ll3">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BMI ANALYSIS:-"
+
                     android:id="@+id/textView16"
                     android:textSize="30dp"
                     android:layout_below="@+id/textView15"
@@ -89,6 +101,7 @@ better for you if you maintain this ratio as it rigth now."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 android:id="@+id/ll4">
                 <TextView
                     android:layout_width="wrap_content"
@@ -113,6 +126,7 @@ age."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 android:id="@+id/ll5">
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,6 +150,7 @@ all.You must walk or run for about 10 or more minutes per day."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 android:id="@+id/ll6">
                 <TextView
                     android:layout_width="wrap_content"
@@ -159,6 +174,7 @@ per day."
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:orientation="vertical"
                 android:id="@+id/ll7">
                 <TextView
@@ -183,6 +199,7 @@ per day."
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 android:orientation="vertical"
                 android:id="@+id/ll8">
                 <TextView
@@ -208,6 +225,7 @@ per day."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_margin="10dp"
                 android:id="@+id/ll9">
                 <TextView
                     android:layout_width="wrap_content"

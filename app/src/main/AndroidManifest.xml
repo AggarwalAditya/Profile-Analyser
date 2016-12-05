@@ -48,9 +48,10 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".HomePage"></activity>
+        <activity android:name=".HomePage" />
         <activity android:name=".Event_id_page" />
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".ShowPhotos"></activity>
     </application>
 
 </manifest>

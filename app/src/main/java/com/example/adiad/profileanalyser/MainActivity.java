@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private int[] tabIcons = {
             R.drawable.health,
             R.drawable.social,
-            R.drawable.internal
+            R.drawable.internal,
+            R.drawable.tick
     };
 
     @Override
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
         if(getIntent().getExtras().getString("eventORnot").contentEquals("1"))
         {
-            tabLayout.getTabAt(3).setIcon(tabIcons[2]);
+            tabLayout.getTabAt(3).setIcon(tabIcons[3]);
         }
     }
     private void setupViewPager(ViewPager viewPager) {
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new InternalMemory(), "Internal Memory");
         if(getIntent().getExtras().getString("eventORnot").contentEquals("1"))
         {
-            adapter.addFragment(new Fragment_4(), "Post");
+            adapter.addFragment(new Fragment_4(), "Submit");
         }
         viewPager.setAdapter(adapter);
     }

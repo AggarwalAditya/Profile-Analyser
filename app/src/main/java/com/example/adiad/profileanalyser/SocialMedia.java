@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,8 +29,6 @@ import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnTabSelectListener;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -60,6 +57,7 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
     TextView status;
     Button likes;
     Button posts;
+    Button photos;
     LoginButton loginButton;
     private ProfilePictureView profilePictureView;
     AccessTokenTracker access_tracker;
@@ -100,6 +98,7 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
             likes.setEnabled(true);
             posts.setEnabled(true);
             likes.setVisibility(View.VISIBLE);
+            photos.setVisibility(View.VISIBLE);
             posts.setVisibility(View.VISIBLE);
             profilePictureView.setVisibility(View.VISIBLE);
             //  status.setVisibility(View.VISIBLE);
@@ -110,6 +109,7 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
             posts.setEnabled(false);
             likes.setVisibility(View.GONE);
             posts.setVisibility(View.GONE);
+            photos.setVisibility(View.GONE);
             profilePictureView.setVisibility(View.GONE);
             // status.setVisibility(View.GONE);
         }
@@ -159,40 +159,43 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
         // status = (TextView) rootView.findViewById(R.id.status);
         likes = (Button) rootView.findViewById(R.id.likes);
         posts = (Button) rootView.findViewById(R.id.posts);
+        photos=(Button)rootView.findViewById(R.id.photos);
         profilePictureView = (ProfilePictureView) rootView.findViewById(R.id.user_pic);
         displayinfo(Profile.getCurrentProfile());
-        BottomBar bottomBar = (BottomBar) rootView.findViewById(R.id.bottomBar);
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.facebook) {
-                    checkConnection(rootView);
-                    loginButton.setVisibility(View.VISIBLE);
-                    likes.setVisibility(View.VISIBLE);
-                    posts.setVisibility(View.VISIBLE);
+//        BottomBar bottomBar = (BottomBar) rootView.findViewById(R.id.bottomBar);
+//        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+//            @Override
+//            public void onTabSelected(@IdRes int tabId) {
+//                if (tabId == R.id.facebook) {
+//                    checkConnection(rootView);
+//                    loginButton.setVisibility(View.VISIBLE);
+//                    likes.setVisibility(View.VISIBLE);
+//                    posts.setVisibility(View.VISIBLE);
+//
+//                    profilePictureView.setVisibility(View.VISIBLE);
+//                    // status.setVisibility(View.VISIBLE);
+//
+//
+//                }
+//                if (tabId == R.id.twitter) {
+//                    checkConnection(rootView);
+//                    loginButton.setVisibility(View.GONE);
+//                    likes.setVisibility(View.GONE);
+//                    posts.setVisibility(View.GONE);
+//                    profilePictureView.setVisibility(View.GONE);
+//                    //status.setVisibility(View.GONE);
+//                }
+//            }
+//        });
 
-                    profilePictureView.setVisibility(View.VISIBLE);
-                    // status.setVisibility(View.VISIBLE);
 
-
-                }
-                if (tabId == R.id.twitter) {
-                    checkConnection(rootView);
-                    loginButton.setVisibility(View.GONE);
-                    likes.setVisibility(View.GONE);
-                    posts.setVisibility(View.GONE);
-                    profilePictureView.setVisibility(View.GONE);
-                    //status.setVisibility(View.GONE);
-                }
-            }
-        });
-
-
-        profilePictureView.setCropped(true);
+        //profilePictureView.setCropped(true);
 
         if (Profile.getCurrentProfile() == null) {
 
         }
+
+
         posts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,12 +208,24 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
         likes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i1 = new Intent(getContext(), ShowLikes.class);
-//                i1.putExtra("currentAccessToken", AccessToken.getCurrentAccessToken());
-//                startActivity(i1);
-                get_picture();
+                Intent i1 = new Intent(getContext(), ShowLikes.class);
+                i1.putExtra("currentAccessToken", AccessToken.getCurrentAccessToken());
+                startActivity(i1);
+                //get_picture();
             }
         });
+
+        photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("clicked","clicked");
+                Intent i1 = new Intent(getContext(), ShowPhotos.class);
+                i1.putExtra("currentAccessToken", AccessToken.getCurrentAccessToken());
+                startActivity(i1);
+                //get_picture();
+            }
+        });
+
         access_tracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken newtAccessToken) {
@@ -235,6 +250,9 @@ public class SocialMedia extends Fragment  implements ConnectivityReceiver.Conne
 
 
     //
+
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
